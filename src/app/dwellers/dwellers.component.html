@@ -1,0 +1,141 @@
+<div class="container">
+
+
+  @if (selection.selected.length != 0) {
+  <mat-card class="multi-edit-card">
+    <mat-card-header>
+      <mat-card-title>群体编辑</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+
+      <button mat-flat-button (click)="maxSpecial()" color="primary">
+        最大属性
+      </button>
+
+      <button mat-flat-button (click)="maxLevel()" color="primary">
+        最大等级
+      </button>
+
+      <button mat-flat-button (click)="maxHealth()" color="primary">
+        1000生命值
+      </button>
+
+      <button mat-flat-button (click)="maxHappiness()" color="primary">
+        幸福药
+      </button>
+
+      <button mat-flat-button (click)="removeRelationship()" color="primary">
+        忘情水
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  }
+
+  <mat-divider></mat-divider>
+
+  @if (cur_edit_dweller != null) {
+  <mat-card class="single-edit-card">
+    <mat-card-header>
+      <mat-card-title>单个编辑</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <div class='row'>
+        <mat-form-field appearance="fill" for="vault">
+          <mat-label>名字</mat-label>
+          <input matInput [(ngModel)]="cur_edit_dweller.name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" for="vault">
+          <mat-label>姓氏</mat-label>
+          <input matInput [(ngModel)]="cur_edit_dweller.lastName">
+        </mat-form-field>
+      </div>
+
+
+    </mat-card-actions>
+
+    <mat-card-actions>
+      <div class="row">
+        @for (name of stats_names; track name) {
+        <div class="column">
+          <label class="special-label">{{name}}({{cur_edit_dweller.stats.stats[$index].value}})</label>
+          <mat-slider class="special-slider" max="10" min="1" step="1" discrete="true">
+            <input matSliderThumb [(ngModel)]="cur_edit_dweller.stats.stats[$index].value" #slider>
+          </mat-slider>
+        </div>
+        }
+      </div>
+    </mat-card-actions>
+
+  </mat-card>
+  }
+
+  <mat-divider></mat-divider>
+
+  <table mat-table [dataSource]="dwellers" class="mat-elevation-z8 sav-table">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(i) : null"
+          [checked]="selection.isSelected(i)" [aria-label]="checkboxLabel(i)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- serializeId Column -->
+    <ng-container matColumnDef="serializeId">
+      <th mat-header-cell *matHeaderCellDef> 序号 </th>
+      <td mat-cell *matCellDef="let element;">{{element.serializeId}}</td>
+    </ng-container>
+
+    <!-- name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> 名称 </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- lastName Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> 姓氏 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+    <!-- currentLevel Column -->
+    <ng-container matColumnDef="currentLevel">
+      <th mat-header-cell *matHeaderCellDef> 等级 </th>
+      <td mat-cell *matCellDef="let element"> {{element.experience.currentLevel}} </td>
+    </ng-container>
+
+    <!-- gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef> 性别 </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="icon-male" aria-hidden="false" fontIcon="male" *ngIf="element.gender == 2"></mat-icon>
+        <mat-icon class="icon-female" aria-hidden="false" fontIcon="female" *ngIf="element.gender == 1"></mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- rarity Column -->
+    <ng-container matColumnDef="rarity">
+      <th mat-header-cell *matHeaderCellDef> 稀有度 </th>
+      <td mat-cell *matCellDef="let element">
+        <label class="rarity common" *ngIf="element.rarity == 'Common'">一般</label>
+        <label class="rarity normal" *ngIf="element.rarity == 'Normal'">普通</label>
+        <label class="rarity rare" *ngIf="element.rarity == 'Rare'">稀有</label>
+        <label class="rarity legendary" *ngIf="element.rarity == 'Legendary'">传说</label>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; let i = index; columns: columnsToDisplay;" class="element-row"
+      (click)="cur_edit_dweller = element" [class.dweller-row-is-selected]="element === cur_edit_dweller">
+    </tr>
+  </table>
+
+</div>

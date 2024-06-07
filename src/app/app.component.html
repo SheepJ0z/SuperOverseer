@@ -1,0 +1,30 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  <a class="nav-link" mat-tab-link *ngFor="let link of navLinks" (click)="activeLink = link.link"
+    [routerLink]="link.link" [active]="activeLink == link.link"> {{link.label}} </a>
+</nav>
+
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+
+  @if (activeLink == null) {
+  <mat-card>
+    <mat-card-content>
+      <h2> 先找到存档路径: C:\WeGameApps\rail_apps\避难所(2002022)\save\</h2>
+      <h2> 然后先备份 </h2>
+      <h2> 最后↑ 点击 存档 -> 打开存档 </h2>
+    </mat-card-content>
+  </mat-card>
+
+  <br>
+
+  <mat-card>
+    <mat-card-content>
+      <h2> Version: 1.0.0</h2>
+      <h2> Author: J0Z</h2>
+      <h2>
+        <a href="https://github.com/SheepJ0z/SuperOverseer" target="_blank">Github: SuperOverseer</a>
+      </h2>
+    </mat-card-content>
+  </mat-card>
+  }
+</mat-tab-nav-panel>

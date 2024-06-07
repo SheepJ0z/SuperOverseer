@@ -1,0 +1,104 @@
+@if (vault != null) {
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>基础</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions class="card-info">
+
+    <div class="row">
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>避难所名称</mat-label>
+        <input matInput [(ngModel)]="vault.VaultName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>模式</mat-label>
+        <mat-select [(value)]="vault.VaultMode">
+          <mat-option value="Easy">简单</mat-option>
+          <mat-option value="Normal">一般</mat-option>
+          <mat-option value="Survival">生存</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <button mat-flat-button color="primary" matBadgeColor="warn" matBadge="{{this.vault.rocks.length}}"
+        (click)="vault.rocks = []">
+        清理所有岩石
+      </button>
+    </div>
+
+  </mat-card-actions>
+</mat-card>
+<br>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>资源</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions class="card-info">
+
+    <div class="row">
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>瓶盖</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.Nuka">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>食物</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.Food">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>电</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.Energy">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>水</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.Water">
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>治疗针</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.StimPack">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>消辐宁</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.RadAway">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>量子饮料</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.NukaColaQuantum">
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>午餐盒</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.Lunchbox" [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>巧手先生</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.MrHandy" [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" for="vault">
+        <mat-label>宠物箱</mat-label>
+        <input matInput [(ngModel)]="vault.storage.resources.PetCarrier" [readonly]="true">
+      </mat-form-field>
+    </div>
+
+
+  </mat-card-actions>
+</mat-card>
+
+}

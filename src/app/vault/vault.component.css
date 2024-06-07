@@ -1,0 +1,19 @@
+.card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+mat-form-field {
+    margin: 0 10px;
+}
+
+button {
+    margin: 0 10px;
+}

@@ -1,0 +1,91 @@
+.multi-edit-card {
+    background-color: #ffdae6;
+}
+
+.single-edit-card {
+    background-color: #beffff;
+}
+
+.dweller-row-is-selected {
+    font-weight: bold;
+    background-color: aqua;
+}
+
+button {
+    margin-right: 10px;
+}
+
+mat-divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.special-label {
+    width: 50px;
+}
+
+.icon-male {
+    color: rgb(60, 60, 255);
+}
+
+.icon-female {
+    color: pink;
+}
+
+label.rarity {
+    padding: 4px 6px;
+    border-radius: 3px;
+}
+
+label.common {
+    background-color: white;
+}
+
+label.normal {
+    background-color: rgb(175, 252, 175);
+}
+
+label.rare {
+    background-color: aqua;
+}
+
+label.legendary {
+    background-color: rgb(255, 215, 0);
+}
+
+table {
+    width: 100%;
+}
+
+tr.detail-row {
+    height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+    background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+}
+
+.element-row td {
+    border-bottom-width: 0;
+}
+
+.element-detail {
+    overflow: hidden;
+    display: flex;
+}
